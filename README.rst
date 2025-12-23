@@ -9,6 +9,9 @@ pibooth-qrcode
 
 It adds the display of a custom qrcode at the print and wait state
 
+This fork of the original project was created to add options to save the QR code as a file alongside the captured images. These can then be picked up by my pibooth-gallery project 
+to create the web gallery with download option
+
 Install
 -------
 
