@@ -3,8 +3,6 @@
 pibooth-qrcode
 ==============
 
-|PythonVersions| |PypiPackage| |Downloads|
-
 ``pibooth-qrcode`` is a plugin for the `pibooth`_ application.
 
 It adds the display of a custom qrcode at the print and wait state
@@ -12,12 +10,24 @@ It adds the display of a custom qrcode at the print and wait state
 This fork of the original project was created to add options to save the QR code as a file alongside the captured images. These can then be picked up by my pibooth-gallery project 
 to create the web gallery with download option
 
+The other main change with this version is that the QR code is generated during the state_processing_do phase of the workflow where the original runs during state_processing_exit.
+The change means that if you configure to save the QR code as a file, that file is available on the filesystem to be used by the pibooth-gallery module when it builds its manifest.
+
 Install
 -------
 
-::
+1. Copy pibooth-qrcode.py into the location defined in your pibooth.cfg where you source custom plugins.
+2. Update pibooth.cfg and add the module
+3. Disable the standard pibooth_qrcode module
 
-    $ pip3 install pibooth-qrcode
+
+.. code-block:: ini
+
+        # Path to custom plugin(s) not installed with pip (list of quoted paths accepted)
+        plugins = ('/home/pi/PiBooth_plugins/pibooth-neopixel_spi.py', '/home/pi/PiBooth_plugins/pibooth-gallery.py', '/home/pi/PiBooth_plugins/pibooth-rclone-upload.py', '/home/pi/PiBooth_plugins/pibooth-qrcode.py')
+        
+        # Plugin names to be disabled after startup (list of quoted names accepted)
+        plugins_disabled = ('pibooth_qrcode')
 
 Configuration
 -------------
